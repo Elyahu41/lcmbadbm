@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AppTest {
 
@@ -46,8 +45,6 @@ class AppTest {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
         assertEquals("0.4",version);
-
-        assertNull(version);
     }
 
     @Test
