@@ -277,7 +277,7 @@ public class DiskWorker extends SwingWorker<Boolean, DiskMark> {
 
     @Override
     protected void process(List<DiskMark> markList) {
-        /**
+        /*
          * We are passed a list of one or more DiskMark objects that our thread has previously
          * published to Swing. Watch Professor Cohen's video - Module_6_RefactorBadBM Swing_DiskWorker_Tutorial.mp4
          */
