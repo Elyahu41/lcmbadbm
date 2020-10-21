@@ -11,6 +11,7 @@ public class CMDLineWorker implements UIInterface{
     }
 
     public void execute() {
+        System.out.println("Starting benchmark!");
         diskWorker.doInBackground(this);
     }
 
