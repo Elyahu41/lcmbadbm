@@ -53,7 +53,6 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         /* Set the Nimbus look and feel */
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

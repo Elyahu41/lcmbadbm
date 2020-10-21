@@ -11,7 +11,7 @@ public class SwingWorkerExecutor extends SwingWorker<Boolean, DiskMark> implemen
     }
 
     @Override
-    protected Boolean doInBackground() throws Exception {
+    protected Boolean doInBackground() {
         return diskWorker.doInBackground(SwingWorkerExecutor.this);
     }
 

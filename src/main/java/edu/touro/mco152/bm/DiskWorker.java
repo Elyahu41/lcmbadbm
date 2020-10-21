@@ -7,7 +7,6 @@ import edu.touro.mco152.bm.ui.Gui;
 import javax.persistence.EntityManager;
 import javax.swing.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
@@ -52,8 +51,9 @@ public class DiskWorker {
     float percentComplete;
     int blockSize = blockSizeKb * KILOBYTE;
     byte[] blockArr = new byte[blockSize];
+    DiskMark wMark, rMark;// declare vars that will point to objects used to pass progress to UI
 
-    protected Boolean doInBackground(UIInterface uiInterface) throws Exception {
+    protected Boolean doInBackground(UIInterface uiInterface) {
         System.out.println("*** starting new worker thread");
         msg("Running readTest " + readTest + "   writeTest " + writeTest);
         msg("num files: " + numOfMarks + ", num blks: " + numOfBlocks
@@ -64,9 +64,6 @@ public class DiskWorker {
                 blockArr[b] = (byte) 0xFF;
             }
         }
-
-        DiskMark wMark, rMark;  // declare vars that will point to objects used to pass progress to UI
-
         Gui.updateLegend();  // init chart legend info
 
         if (autoReset) {
@@ -195,25 +192,23 @@ public class DiskWorker {
                 long startTime = System.nanoTime();
                 long totalBytesReadInMark = 0;
 
-                try {
-                    try (RandomAccessFile rAccFile = new RandomAccessFile(testFile, "r")) {
-                        for (int b = 0; b < numOfBlocks; b++) {
-                            if (blockSequence == DiskRun.BlockSequence.RANDOM) {
-                                int rLoc = Util.randInt(0, numOfBlocks - 1);
-                                rAccFile.seek(rLoc * blockSize);
-                            } else {
-                                rAccFile.seek(b * blockSize);
-                            }
-                            rAccFile.readFully(blockArr, 0, blockSize);
-                            totalBytesReadInMark += blockSize;
-                            rUnitsComplete++;
-                            unitsComplete = rUnitsComplete + wUnitsComplete;
-                            percentComplete = (float) unitsComplete / (float) unitsTotal * 100f;
-                            uiInterface.setProgressAmount((int) percentComplete);
+                try (RandomAccessFile rAccFile = new RandomAccessFile(testFile, "r")) {
+                    for (int b = 0; b < numOfBlocks; b++) {
+                        if (blockSequence == DiskRun.BlockSequence.RANDOM) {
+                            int rLoc = Util.randInt(0, numOfBlocks - 1);
+                            rAccFile.seek(rLoc * blockSize);
+                        } else {
+                            rAccFile.seek(b * blockSize);
                         }
+                        rAccFile.readFully(blockArr, 0, blockSize);
+                        totalBytesReadInMark += blockSize;
+                        rUnitsComplete++;
+                        unitsComplete = rUnitsComplete + wUnitsComplete;
+                        percentComplete = (float) unitsComplete / (float) unitsTotal * 100f;
+                        uiInterface.setProgressAmount((int) percentComplete);
                     }
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 long endTime = System.nanoTime();
                 long elapsedTimeNs = endTime - startTime;

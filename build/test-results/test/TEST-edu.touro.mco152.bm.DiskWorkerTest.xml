@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.touro.mco152.bm.DiskWorkerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-21T05:18:40" hostname="DESKTOP-SN41QP7" time="0.027">
-  <properties/>
-  <testcase name="doInBackground()" classname="edu.touro.mco152.bm.DiskWorkerTest" time="0.027"/>
-  <system-out><![CDATA[*** starting new worker thread
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
