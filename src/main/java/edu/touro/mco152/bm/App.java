@@ -44,7 +44,7 @@ public class App {
     public static int numOfMarks = 25;      // desired number of marks
     public static int numOfBlocks = 32;     // desired number of blocks
     public static int blockSizeKb = 512;    // size of a block in KBs
-    public static DiskWorker worker = null;
+    public static SwingWorkerExecutor worker = null;
     public static int nextMarkNumber = 1;   // number of the next mark
     public static double wMax = -1, wMin = -1, wAvg = -1;
     public static double rMax = -1, rMin = -1, rAvg = -1;
@@ -212,7 +212,6 @@ public class App {
 
     public static void clearSavedRuns() {
         DiskRun.deleteAll();
-
         loadSavedRuns();
     }
 
@@ -222,7 +221,7 @@ public class App {
 
     public static void cancelBenchmark() {
         if (worker == null) {
-            msg("worker is null abort...");
+            msg("worker is not initialized, abort...");
             return;
         }
         worker.cancel(true);
@@ -266,7 +265,7 @@ public class App {
         }
 
         //7. start disk worker thread
-        worker = new DiskWorker();
+        worker = new SwingWorkerExecutor();
         worker.addPropertyChangeListener((final PropertyChangeEvent event) -> {
             switch (event.getPropertyName()) {
                 case "progress":
