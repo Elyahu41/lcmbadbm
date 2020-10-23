@@ -44,6 +44,18 @@ test {
     }
 }
 
+jar {
+    from project.sourceSets.main.allSource
+    manifest {
+        attributes 'Main-Class': 'edu.touro.mco152.bm.App'
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
 sourceSets {
     sourceSets.main.output.resourcesDir = sourceSets.main.java.outputDir
 }
