@@ -5,6 +5,7 @@ public class CMDLineWorker implements UIInterface{
     DiskWorker diskWorker;
     boolean cancel = false;
     boolean bmFinished = false;
+    int progressAmount = 0;
 
     CMDLineWorker() {
         diskWorker = new DiskWorker();
@@ -22,6 +23,7 @@ public class CMDLineWorker implements UIInterface{
 
     @Override
     public void setProgressAmount(int percentComplete) {
+        progressAmount = percentComplete;
         System.out.println("Percent complete: "+percentComplete+"%");
         if (percentComplete == 100){
             bmFinished = true;
@@ -31,5 +33,9 @@ public class CMDLineWorker implements UIInterface{
     @Override
     public void publish(DiskMark diskMark) {
         System.out.println("Results: "+diskMark.toString());
+    }
+
+    public int getProgressAmount() {
+        return progressAmount;
     }
 }
