@@ -19,6 +19,10 @@ import java.util.logging.Logger;
 import static edu.touro.mco152.bm.App.*;
 import static edu.touro.mco152.bm.DiskMark.MarkType.WRITE;
 
+/**
+ * This class is a command line design pattern implementation of DiskWorker. When calling it's execute method it will
+ * execute a write test.
+ */
 public class DiskWorkerWriteExecutor {
 
     int wUnitsComplete = 0,
@@ -35,6 +39,9 @@ public class DiskWorkerWriteExecutor {
     DiskMark wMark;
     int startFileNum = App.nextMarkNumber;
 
+    /**
+     * This is the constructor for the class. All it does is initialize the blockArr variable
+     */
     public DiskWorkerWriteExecutor() {
         for (int b=0; b<blockArr.length; b++) {
             if (b % 2 == 0) {
@@ -43,6 +50,9 @@ public class DiskWorkerWriteExecutor {
         }
     }
 
+    /**
+     * This is the main method for the class to execute a write test
+     */
     public void execute(UIInterface uiInterface) {
         write(uiInterface);
     }

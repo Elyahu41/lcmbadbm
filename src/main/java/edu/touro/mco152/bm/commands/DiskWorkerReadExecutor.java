@@ -18,6 +18,10 @@ import static edu.touro.mco152.bm.App.*;
 import static edu.touro.mco152.bm.App.updateMetrics;
 import static edu.touro.mco152.bm.DiskMark.MarkType.READ;
 
+/**
+ * This class is a command line design pattern implementation of DiskWorker. When calling it's execute method it will
+ * execute a read test.
+ */
 public class DiskWorkerReadExecutor {
 
     int wUnitsComplete = 0,
@@ -34,6 +38,9 @@ public class DiskWorkerReadExecutor {
     DiskMark rMark;
     int startFileNum = App.nextMarkNumber;
 
+    /**
+     * This is the constructor for the class. All it does is initialize the blockArr variable
+     */
     public DiskWorkerReadExecutor() {
         for (int b=0; b<blockArr.length; b++) {
             if (b % 2 == 0) {
@@ -42,6 +49,9 @@ public class DiskWorkerReadExecutor {
         }
     }
 
+    /**
+     * This is the main method for the class to execute a read test
+     */
     public void execute(UIInterface uiInterface) {
         read(uiInterface);
     }
