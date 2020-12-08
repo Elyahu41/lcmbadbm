@@ -22,7 +22,7 @@ import static edu.touro.mco152.bm.DiskMark.MarkType.READ;
  * This class is a command line design pattern implementation of DiskWorker. When calling it's execute method it will
  * execute a read test.
  */
-public class DiskWorkerReadExecutor {
+public class DiskWorkerReadExecutor implements DiskWorkerInvoker {
 
     int wUnitsComplete = 0,
             rUnitsComplete = 0,

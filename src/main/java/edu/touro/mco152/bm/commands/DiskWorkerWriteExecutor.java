@@ -23,7 +23,7 @@ import static edu.touro.mco152.bm.DiskMark.MarkType.WRITE;
  * This class is a command line design pattern implementation of DiskWorker. When calling it's execute method it will
  * execute a write test.
  */
-public class DiskWorkerWriteExecutor {
+public class DiskWorkerWriteExecutor implements DiskWorkerInvoker {
 
     int wUnitsComplete = 0,
             rUnitsComplete = 0,
