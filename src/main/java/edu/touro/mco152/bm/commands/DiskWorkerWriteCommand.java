@@ -23,7 +23,7 @@ import static edu.touro.mco152.bm.DiskMark.MarkType.WRITE;
  * This class is a command line design pattern implementation of DiskWorker. When calling it's execute method it will
  * execute a write test.
  */
-public class DiskWorkerWriteExecutor implements DiskWorkerInvoker {
+public class DiskWorkerWriteCommand implements DiskWorkerCommand {
 
     int wUnitsComplete = 0,
             rUnitsComplete = 0,
@@ -42,7 +42,7 @@ public class DiskWorkerWriteExecutor implements DiskWorkerInvoker {
     /**
      * This is the constructor for the class. All it does is initialize the blockArr variable
      */
-    public DiskWorkerWriteExecutor() {
+    public DiskWorkerWriteCommand() {
         for (int b=0; b<blockArr.length; b++) {
             if (b % 2 == 0) {
                 blockArr[b] = (byte) 0xFF;
@@ -54,11 +54,6 @@ public class DiskWorkerWriteExecutor implements DiskWorkerInvoker {
      * This is the main method for the class to execute a write test
      */
     public void execute(UIInterface uiInterface) {
-        write(uiInterface);
-    }
-
-
-    private void write(UIInterface uiInterface) {
         DiskRun run = new DiskRun(DiskRun.IOMode.WRITE, blockSequence);
         run.setNumMarks(numOfMarks);
         run.setNumBlocks(numOfBlocks);

@@ -1,7 +1,7 @@
 package edu.touro.mco152.bm;
 
-import edu.touro.mco152.bm.commands.DiskWorkerReadExecutor;
-import edu.touro.mco152.bm.commands.DiskWorkerWriteExecutor;
+import edu.touro.mco152.bm.commands.DiskWorkerReadCommand;
+import edu.touro.mco152.bm.commands.DiskWorkerWriteCommand;
 import edu.touro.mco152.bm.ui.Gui;
 import edu.touro.mco152.bm.ui.MainFrame;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ public class DiskWorkerExecutorTest {
             App.dataDir.mkdirs(); // create data dir if not already present
         }
         CMDLineWorker cmdLineWorker = new CMDLineWorker();
-        DiskWorkerWriteExecutor dwwe = new DiskWorkerWriteExecutor();
+        DiskWorkerWriteCommand dwwe = new DiskWorkerWriteCommand();
         dwwe.execute(cmdLineWorker);
         assertEquals(cmdLineWorker.getProgressAmount(),50);
     }
@@ -72,7 +72,7 @@ public class DiskWorkerExecutorTest {
             App.dataDir.mkdirs(); // create data dir if not already present
         }
         CMDLineWorker cmdLineWorker = new CMDLineWorker();
-        DiskWorkerReadExecutor dwre = new DiskWorkerReadExecutor();
+        DiskWorkerReadCommand dwre = new DiskWorkerReadCommand();
         dwre.execute(cmdLineWorker);
         assertEquals(cmdLineWorker.getProgressAmount(),50);
     }

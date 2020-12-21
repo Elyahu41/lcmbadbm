@@ -7,7 +7,7 @@ public class CMDLineWorker implements UIInterface{
     boolean bmFinished = false;
     int progressAmount = 0;
 
-    CMDLineWorker() {
+    public CMDLineWorker() {
         diskWorker = new DiskWorker();
     }
 
