@@ -39,7 +39,7 @@ public class DiskWorkerReadCommand implements DiskWorkerCommand {
     int startFileNum = App.nextMarkNumber;
 
     /**
-     * This is the constructor for the class. All it does is initialize the blockArr variable
+     * This is the constructor for the class. All it does is initialize the blockArr variable.
      */
     public DiskWorkerReadCommand() {
         for (int b=0; b<blockArr.length; b++) {
@@ -50,7 +50,7 @@ public class DiskWorkerReadCommand implements DiskWorkerCommand {
     }
 
     /**
-     * This is the main method for the class to execute a read test
+     * This is the main method for the class to execute a read test.
      */
     public boolean execute(UIInterface uiInterface) {
         DiskRun run = new DiskRun(DiskRun.IOMode.READ, blockSequence);
