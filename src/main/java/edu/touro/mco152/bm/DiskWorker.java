@@ -1,7 +1,7 @@
 package edu.touro.mco152.bm;
 
-import edu.touro.mco152.bm.commands.DiskWorkerReadExecutor;
-import edu.touro.mco152.bm.commands.DiskWorkerWriteExecutor;
+import edu.touro.mco152.bm.commands.DiskWorkerReadCommand;
+import edu.touro.mco152.bm.commands.DiskWorkerWriteCommand;
 import edu.touro.mco152.bm.ui.Gui;
 
 import javax.swing.*;
@@ -50,8 +50,8 @@ public class DiskWorker {
             Gui.resetTestData();
         }
 
-        DiskWorkerReadExecutor dwre = new DiskWorkerReadExecutor();
-        DiskWorkerWriteExecutor dwwe = new DiskWorkerWriteExecutor();
+        DiskWorkerReadCommand dwre = new DiskWorkerReadCommand();
+        DiskWorkerWriteCommand dwwe = new DiskWorkerWriteCommand();
 
         /*
          * The GUI allows either a write, read, or both types of BMs to be started. They are done serially.
