@@ -52,7 +52,7 @@ public class DiskWorkerReadCommand implements DiskWorkerCommand {
     /**
      * This is the main method for the class to execute a read test
      */
-    public void execute(UIInterface uiInterface) {
+    public boolean execute(UIInterface uiInterface) {
         DiskRun run = new DiskRun(DiskRun.IOMode.READ, blockSequence);
         run.setNumMarks(numOfMarks);
         run.setNumBlocks(numOfBlocks);
@@ -111,6 +111,7 @@ public class DiskWorkerReadCommand implements DiskWorkerCommand {
         }
 
         persistInfo(run);
+        return true;
     }
 
     private void persistInfo(DiskRun run) {

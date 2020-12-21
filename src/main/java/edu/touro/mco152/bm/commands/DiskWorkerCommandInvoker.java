@@ -16,7 +16,7 @@ public class DiskWorkerCommandInvoker {
         this.cmdLineWorker = new CMDLineWorker();
     }
 
-    public void startBenchmark() {
-        diskWorkerCommand.execute(cmdLineWorker);
+    public boolean startBenchmark() {
+        return diskWorkerCommand.execute(cmdLineWorker);
     }
 }

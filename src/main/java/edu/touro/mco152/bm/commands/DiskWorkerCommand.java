@@ -7,5 +7,5 @@ import edu.touro.mco152.bm.UIInterface;
  */
 public interface DiskWorkerCommand {
 
-    void execute(UIInterface uiInterface);
+    boolean execute(UIInterface uiInterface);
 }

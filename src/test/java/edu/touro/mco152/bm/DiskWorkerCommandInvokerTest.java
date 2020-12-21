@@ -1,5 +1,6 @@
 package edu.touro.mco152.bm;
 
+import edu.touro.mco152.bm.commands.DiskWorkerCommandInvoker;
 import edu.touro.mco152.bm.commands.DiskWorkerReadCommand;
 import edu.touro.mco152.bm.commands.DiskWorkerWriteCommand;
 import edu.touro.mco152.bm.ui.Gui;
@@ -10,8 +11,9 @@ import java.io.File;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DiskWorkerExecutorTest {
+public class DiskWorkerCommandInvokerTest {
 
     @Test
     void writeTest() {
@@ -39,10 +41,10 @@ public class DiskWorkerExecutorTest {
         } else {
             App.dataDir.mkdirs(); // create data dir if not already present
         }
-        CMDLineWorker cmdLineWorker = new CMDLineWorker();
         DiskWorkerWriteCommand dwwe = new DiskWorkerWriteCommand();
-        dwwe.execute(cmdLineWorker);
-        assertEquals(cmdLineWorker.getProgressAmount(),50);
+        DiskWorkerCommandInvoker dwci = new DiskWorkerCommandInvoker(dwwe);
+
+        assertTrue(dwci.startBenchmark());
     }
 
     @Test
@@ -71,9 +73,9 @@ public class DiskWorkerExecutorTest {
         } else {
             App.dataDir.mkdirs(); // create data dir if not already present
         }
-        CMDLineWorker cmdLineWorker = new CMDLineWorker();
         DiskWorkerReadCommand dwre = new DiskWorkerReadCommand();
-        dwre.execute(cmdLineWorker);
-        assertEquals(cmdLineWorker.getProgressAmount(),50);
+        DiskWorkerCommandInvoker dwci = new DiskWorkerCommandInvoker(dwre);
+
+        assertTrue(dwci.startBenchmark());
     }
 }

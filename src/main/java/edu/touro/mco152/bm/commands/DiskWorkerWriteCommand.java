@@ -53,7 +53,7 @@ public class DiskWorkerWriteCommand implements DiskWorkerCommand {
     /**
      * This is the main method for the class to execute a write test
      */
-    public void execute(UIInterface uiInterface) {
+    public boolean execute(UIInterface uiInterface) {
         DiskRun run = new DiskRun(DiskRun.IOMode.WRITE, blockSequence);
         run.setNumMarks(numOfMarks);
         run.setNumBlocks(numOfBlocks);
@@ -140,6 +140,7 @@ public class DiskWorkerWriteCommand implements DiskWorkerCommand {
             run.setEndTime(new Date());
         } // END outer loop for specified duration (number of 'marks') for WRITE bench mark
         persistInfo(run);
+        return true;
     }
 
     private void createTestDataFile() {
